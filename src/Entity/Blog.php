@@ -3,8 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\BlogRepository;
+use App\Repository\CommentaireRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: BlogRepository::class)]
 class Blog
@@ -23,11 +28,26 @@ class Blog
     #[ORM\Column(length: 255)]
     private ?string $descriptionB = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $imageB = null;
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Please upload image")
+     * @Assert\File(mimeTypes={"image/jpeg"})
+     */
+    private $imageB;
 
     #[ORM\ManyToOne]
     private ?User $idut = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="id", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $commentaires;
+
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,12 +90,12 @@ class Blog
         return $this;
     }
 
-    public function getImageB(): ?string
+    public function getImageB()
     {
         return $this->imageB;
     }
 
-    public function setImageB(string $imageB): self
+    public function setImageB($imageB)
     {
         $this->imageB = $imageB;
 
@@ -93,4 +113,43 @@ class Blog
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getDescriptionB();
+    }
+
+    //test
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): ?Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setIdBlog($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getIdBlog() === $this) {
+                $commentaire->setIdBlog(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

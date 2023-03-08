@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Repository\BlogRepository;
 use App\Repository\CommentaireRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,6 +30,7 @@ class Commentaire
 
     #[ORM\ManyToOne]
     private ?Blog $idBlog = null;
+
 
     public function getId(): ?int
     {
@@ -93,4 +96,11 @@ class Commentaire
 
         return $this;
     }
+
+    public function __toString(){
+        return (String) $this->getId();
+
+    }
+
+
 }
