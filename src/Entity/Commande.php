@@ -21,16 +21,19 @@ class Commande
     private ?\DateTimeInterface $dateCommande = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Entrer votre nom complet")]
+    #[Assert\NotBlank(message:"le nom doit etre non vide !")]
+    #[Assert\Length( min : 3,minMessage :"Entrer un nom au min de 5 caracteres")]
     private ?string $nomClient = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "Entrer votre adresse mail")]
+    #[Assert\Email(message : "L'adresse email '{{ value }}' n'est pas valide.")]
     private ?string $mailClient = null;
 
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Entrer votre adresse de livraison")]
+    #[Assert\NotBlank(message:"adresse doit etre non vide !")]
+    #[Assert\Length( min : 10,minMessage :"Entrer une adresse au min de 10 caracteres")]
     private ?string $adresseLivraison = null;
 
     #[ORM\Column]
