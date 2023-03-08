@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CategoriePRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategoriePRepository::class)]
 class CategorieP
@@ -15,9 +16,13 @@ class CategorieP
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"nom categorie doit etre non vide !")]
+    #[Assert\Length( min : 5,minMessage :"Entrer un nom au min de 5 caracteres")]
     private ?string $nomC = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\NotBlank(message:"description doit etre non vide !")]
+    #[Assert\Length( min :10 ,minMessage :"Entrer une description au min de 10 caracteres")]
     private ?string $descriptionCat = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]

@@ -178,7 +178,7 @@ class ProduitController extends AbstractController
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            3
+            6
         );
         return $this->render('produit/indexFront.html.twig', [ 'Produit' => $pagination,'listP' => $pagination,'cat'=> $categories]);
 
@@ -199,7 +199,7 @@ class ProduitController extends AbstractController
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            3
+            6
         );
 
         return $this->render('produit/indexFront.html.twig', [
@@ -222,7 +222,7 @@ class ProduitController extends AbstractController
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            3
+            6
         );
 
         return $this->render('produit/indexFront.html.twig', [
