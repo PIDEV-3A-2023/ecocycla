@@ -68,6 +68,7 @@
     </section>
     <!-- End Top Bar -->
     <!-- header -->
+{#
     <header id="header" class="header d-flex align-items-center">
 
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -86,13 +87,15 @@
 
                         </ul>
                     </li>
-                    <li><a href="#about">A propos de nous</a></li><!-- about -->
+                    <li><a href="/#about">A propos de nous</a></li><!-- about -->
                     <li><a href="#services">Nos Services</a></li><!-- services -->
                     <li><a href="{{ path('display_prodFront') }}">Magasin</a></li><!-- portfolio -->
                     <li>
                         <a href="{{ path('display_panFront') }}">Panier</a>
                     </li>
-                    {# <li><a href="don.html.twig"></a></li><!-- team -->#}
+                    #}
+{# <li><a href="don.html.twig"></a></li><!-- team -->#}{#
+
                      <li><a href="{{ path ('blog_index_front') }}">Blog </a></li><!-- blog -->
                                           <li class="dropdown"><a href="#"><span>Recyclage</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
@@ -120,6 +123,69 @@
 
         </div>
     </header>
+#}
+    <header id="header" class="header d-flex align-items-center">
+
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+            <a href="/" class="logo d-flex align-items-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <img src="assets/img/logo1.png" alt="">
+                <h1>EcoCycla<span>.</span></h1>
+            </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="/#hero">Accueil</a></li><!--hedhom ely mahtoutin fel page el asleniya home -->
+                    <li><a href="/#about">A propos de nous</a></li><!-- about -->
+                    <li class="dropdown">
+                        <a href="/#services" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nos Services <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('display_prodFront') }}">Produits</a></li>
+                            <li><a href="{{ path('display_panFront') }}">panier</a></li>
+                            <li><a href="{{ path ('blog_index_front') }}">Blog</a></li>
+                         {#   <li><a href="{{ path('app_don_index') }}">Don</a></li>
+                            <li><a href="/collection">Collection</a></li>
+#}
+                        </ul>
+                    </li>
+
+
+                    <!-- services -->
+                    {#<li><a href="magasin.html.twig">Magasin</a></li><!-- portfolio --> #}
+                    {# <li><a href="don.html.twig"></a></li><!-- team -->#}
+                    {# <li><a href="blog.html">Blog et Article</a></li><!-- blog --> #}
+                    {# <li><a href="commande.html.twig">Suivre Commande</a></li><!-- blog --> #}
+                    {# <li class="dropdown"><a href="#"><span>Recyclage</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a href="don.html.twig">Don</a></li>
+                            <li><a href="collecte.html.twig">collecte</a></li>
+
+                        </ul>
+                    </li>
+                    #}
+                    <li><a href="/#contact">Contact</a></li>
+
+                    <!-- Si l'utilisateur est connecté, afficher l'icône de profil -->
+                    <li> {% if is_granted('ROLE_USER') %}
+                            <a href="/logout">
+                                <i class="fas fa-user">Log out</i>
+                            </a>
+                            <!-- Sinon, afficher l'icône de connexion -->
+                        {% else %}
+                            <a href="{{ path ('app_login')}}">
+                                <i class="fas fa-sign-in-alt">login</i>
+                            </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav><!-- .navbar -->
+
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+        </div>
+    </header>
+
+
     <!-- end header -->
 {% endblock %}
 {% block body %}
