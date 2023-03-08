@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collecte index{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+    <h1>Collecte index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>idusercollect</th>
+                <th>EtatC</th>
+                <th>Typevehicule</th>
+                <th>Contact</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collecte in collectes %}
+            <tr>
+                <td>{{ collecte.id }}</td>
+{#
+                <td>{{ collecte.idusercollect.nom }}</td>
+#}
+                <td>{{ collecte.etatC }}</td>
+                <td>{{ collecte.typevehicule }}</td>
+                <td>{{ collecte.contact }}</td>
+                <td>
+                    <a href="{{ path('app_collecte_show_admin', {'id': collecte.id}) }}">show</a>
+                    <a href="{{ path('app_collecte_edit_admin', {'id': collecte.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_collecte_new_admin') }}">Create new</a>
+        </div></section></main>
+{% endblock %}

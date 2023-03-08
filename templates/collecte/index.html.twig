@@ -1,0 +1,50 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Collecte index{% endblock %}
+
+{% block body %}
+    <h1>Collecte index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>nom_collecteur</th>
+                <th>Id_don</th>
+                <th>Poids</th>
+                <th>Description</th>
+                <th>Categorie</th>
+
+                <th>Typevehicule</th>
+                <th>Contact</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collecte in collectes %}
+            <tr>
+                <td>{{ collecte.id }}</td>
+                <td>{{ collecte.idusercollect.email }}</td>
+                <td>{{ collecte.iddon.id }}</td>
+                <td>{{ collecte.iddon.poids }} kg</td>
+                <td>{{ collecte.iddon.descriptionD }} </td>
+                <td>{{ collecte.iddon.idCategorie.nom }} </td>
+                <td>{{ collecte.idusercollect.id }}</td>
+                <td>{{ collecte.etatC }}</td>
+                <td>{{ collecte.typevehicule }}</td>
+                <td>{{ collecte.contact }}</td>
+                <td>
+                    <a href="{{ path('app_collecte_show', {'id': collecte.id}) }}">show</a>
+                    <a href="{{ path('app_collecte_edit', {'id': collecte.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_collecte_new') }}">Create new</a>
+{% endblock %}
