@@ -14,10 +14,19 @@ class CategorieD
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+
+    #[Assert\NotBlank(message: "vous devez mettre le description du nom !!!")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+
+    #[Assert\NotBlank(message: "vous devez mettre le description du description !!!")]
     private ?string $description = null;
+
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
 
     public function getId(): ?int
     {

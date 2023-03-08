@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\DonRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DonRepository::class)]
 class Don
@@ -15,9 +16,13 @@ class Don
     private ?int $id = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Length( min: 1, max: 3, minMessage: 'poids doit avoir au minimum 10 kgs', maxMessage: 'poids doit avoir au miximum 1000 kgs'),]
+    #[Assert\NotBlank(message: "vous devez mettre le poids du don !!!")]
     private ?int $poids = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length( min: 5, minMessage: 'poids doit avoir au minimum 5 caractaire',),]
+    #[Assert\NotBlank(message: "vous devez mettre le description du don !!!")]
     private ?string $descriptionD = null;
 
     #[ORM\Column]
@@ -30,7 +35,13 @@ class Don
     private ?User $iduserdon = null;
 
     #[ORM\ManyToOne]
+    #[Assert\NotBlank(message: "choisir categorie!!!")]
     private ?CategorieD $idCategorie = null;
+
+
+
+
+
 
     public function getId(): ?int
     {
@@ -93,7 +104,7 @@ class Don
     public function setIduserdon(?User $iduserdon): self
     {
         $this->iduserdon = $iduserdon;
-
+        //$this->iduserdon = "2" ;
         return $this;
     }
 
