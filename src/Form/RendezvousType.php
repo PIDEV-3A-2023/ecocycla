@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RendezvousType extends AbstractType
 {
@@ -17,6 +18,14 @@ class RendezvousType extends AbstractType
             ->add('dateRV')
             ->add('adresseRV')
             ->add('etatRV')
+            ->add('etatRV', ChoiceType::class, [
+                'label' => 'Etat du RendezVous',
+                'choices' => [
+                    'en attente' => 1,
+                    'terminé' => 2,
+
+                ],
+            ])
 
             ->add('idcollecte' , EntityType::class, [
                 'label' => 'collecte',
