@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RendezvousRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RendezvousRepository::class)]
 class Rendezvous
@@ -18,6 +19,8 @@ class Rendezvous
     private ?\DateTimeInterface $dateRV = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length( min: 10, minMessage: 'votre adresse doit avoir au minimum 10 caractaire',),]
+    #[Assert\NotBlank(message: "choisir une adresse!!!")]
     private ?string $adresseRV = null;
 
     #[ORM\Column]
