@@ -57,7 +57,8 @@
                 <td>
                     <a href="{{ path('app_don_show', {'id': don.id}) }}" class="btn btn-sm btn-info">Voir</a>
                     {% if action != 3 %}   <a href="{{ path('app_don_edit', {'id': don.id}) }}" class="btn btn-sm btn-warning">Modifier</a>{% endif %}
-                    {% if User.roles == 3  and don.etat == 1 %}  <a href="{{ path('app_collecte_new', {'id': don.id}) }}" class="btn btn-sm btn-warning">Selectionne</a> {% endif %}
+                    {% if User.roles == 3  and don.etat == 1 %}  <a href="{{ path('app_collecte_new', {'id': don.id}) }}" class="btn btn-sm btn-warning">Selectionner</a> {% endif %}
+
 
                 </td>
             </tr>
