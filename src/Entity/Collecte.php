@@ -18,8 +18,7 @@ class Collecte
     private ?int $id = null;
 
     #[ORM\Column]
-    // #[Assert\Length( min: 1, max: 3, minMessage: 'poids doit avoir au minimum 10 kgs', maxMessage: 'poids doit avoir au miximum 1000 kgs'),]
-    // #[Assert\NotBlank(message: "vous devez mettre le poids du don !!!")]
+    
     private ?int $etatC = null;
 
     #[ORM\Column(length: 255, nullable: true)]
