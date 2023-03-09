@@ -17,7 +17,7 @@ class RendezvousType extends AbstractType
         $builder
             ->add('dateRV')
             ->add('adresseRV')
-            ->add('etatRV')
+            
             ->add('etatRV', ChoiceType::class, [
                 'label' => 'Etat du RendezVous',
                 'choices' => [
