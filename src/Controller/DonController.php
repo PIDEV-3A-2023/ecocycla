@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use App\Service\MailService;
 
 #[Route('/don')]
 class DonController extends AbstractController
@@ -33,7 +34,7 @@ class DonController extends AbstractController
     public function index(DonRepository $donRepository ,userRepository $userRepository , Request $request , PaginatorInterface $paginator): Response
     {
 
-       $id_role = 2;
+       $id_role = 3;
      // $id_role =  $this->getUser()->getRoles()[3] ;
 
         if ($id_role === 3) {
@@ -63,7 +64,7 @@ class DonController extends AbstractController
 
 
     #[Route('/new', name: 'app_don_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, DonRepository $donRepository, MailerInterface $mailer, SessionInterface $session): Response
+    public function new(Request $request, DonRepository $donRepository, MailerInterface $mailere, SessionInterface $session ,  MailService $mailer): Response
     {
         $don = new Don();
         $form = $this->createForm(DonType::class, $don);
@@ -78,7 +79,9 @@ class DonController extends AbstractController
                 ->subject('Nouvelle donation')
                 ->text('Une nouvelle donation a été ajoutée.');
 
-            $mailer->send($message);
+           // $mailere->sendEmail($message);
+
+            $mailer->sendDonConfirmation($don);
 
             $session->getFlashBag()->add('success', 'Donation ajoutée avec succès!');
 
