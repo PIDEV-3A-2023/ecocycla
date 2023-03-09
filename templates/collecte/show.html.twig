@@ -3,6 +3,9 @@
 {% block title %}Collecte{% endblock %}
 
 {% block body %}
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+        <div class="row gy-4">
     <h1>Collecte</h1>
 
     <table class="table">
@@ -28,7 +31,9 @@
 
     <a href="{{ path('app_collecte_index') }}">back to list</a>
 
-    <a href="{{ path('app_collecte_edit', {'id': collecte.id}) }}">edit</a>
+    <a href="{{ path('app_collecte_edit', {'id': collecte.id}) }}" class="btn btn-sm btn-warning" >Modifier</a>
 
     {{ include('collecte/_delete_form.html.twig') }}
+
+</div></div></section>
 {% endblock %}
