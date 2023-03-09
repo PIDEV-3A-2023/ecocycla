@@ -73,8 +73,8 @@ class DonController extends AbstractController
             $donRepository->save($don, true);
 
             $message = (new Email())
-                ->from('chiheb.menjli1920@esprit.tn')
-                ->to('chiheb.menjli1920@esprit.tn')
+                ->from('chiheb.menjli@esprit.tn')
+                ->to('chiheb.menjli@esprit.tn')
                 ->subject('Nouvelle donation')
                 ->text('Une nouvelle donation a été ajoutée.');
 
