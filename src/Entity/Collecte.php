@@ -105,3 +105,4 @@ class Collecte
         return $this;
     }
 }
+
