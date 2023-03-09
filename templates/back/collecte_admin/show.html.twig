@@ -32,7 +32,7 @@
 
     <a href="{{ path('app_collecte_index_admin') }}">back to list</a>
 
-    <a href="{{ path('app_collecte_edit_admin', {'id': collecte.id}) }}">edit</a>
+    <a href="{{ path('app_collecte_edit_admin', {'id': collecte.id}) }}" class="btn btn-sm btn-warning">edit</a>
 
             {{ include('back/collecte_admin/_delete_form.html.twig') }}</div></section></main>
 {% endblock %}
