@@ -18,16 +18,18 @@ class Collecte
     private ?int $id = null;
 
     #[ORM\Column]
-    #[Assert\Length( min: 1, max: 3, minMessage: 'poids doit avoir au minimum 10 kgs', maxMessage: 'poids doit avoir au miximum 1000 kgs'),]
-    #[Assert\NotBlank(message: "vous devez mettre le poids du don !!!")]
+    // #[Assert\Length( min: 1, max: 3, minMessage: 'poids doit avoir au minimum 10 kgs', maxMessage: 'poids doit avoir au miximum 1000 kgs'),]
+    // #[Assert\NotBlank(message: "vous devez mettre le poids du don !!!")]
     private ?int $etatC = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\Length( min: 5, minMessage: 'poids doit avoir au minimum 5 caractaire',),]
-    #[Assert\NotBlank(message: "vous devez mettre le description du don !!!")]
+    #[Assert\Length( min: 3, minMessage: 'type de véhicule doit avoir au minimum 3 caractaire',),]
+    #[Assert\NotBlank(message: "vous devez mettre le type de votre vehicule !!!")]
     private ?string $typevehicule = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length( min: 8, minMessage: 'contact doit avoir au minimum 8 caractaire',),]
+    #[Assert\NotBlank(message: "vous devez mettre votre contact !!!")]
     private ?string $contact = null;
 
     #[ORM\ManyToOne]
@@ -105,4 +107,3 @@ class Collecte
         return $this;
     }
 }
-
